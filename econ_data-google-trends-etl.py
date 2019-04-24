@@ -1,6 +1,6 @@
 import pandas as pd
 from googletrans import Translator
-translator = Translator()
+import time
 
 #pytrends library from https://github.com/GeneralMills/pytrends
 from pytrends.request import TrendReq
@@ -27,12 +27,15 @@ for country in country_list:
     language = country[1]
 #second loop iterating on words
     for word in word_list:
+        translator = Translator()
         translation = translator.translate(word, src='en', dest=language).text
-        kw_list = [word]
+        kw_list = [translation]
         try:
             #pytrends api call
             pytrends.build_payload(kw_list, cat=0, timeframe='all', geo=country_name, gprop='')     
             tmp = pytrends.interest_over_time()
+            #sleep to avoid rate limits
+            time.sleep(2)
             
             #set date to index
             tmp = tmp.reset_index().drop(['isPartial'],axis=1)
