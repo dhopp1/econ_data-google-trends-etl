@@ -22,7 +22,7 @@ word_list = list(pd.read_csv('words.csv', usecols=range(0,1)).iloc[:,0])
 master = pd.DataFrame(columns=['id', 'date', 'country', 'trend_value', 'en_word', 'word'])
 
 #first loop iterating on countries
-for country in country_list[0:3]:
+for country in country_list:
     print(country[0])
     country_name = country[0]
     language = country[1]
