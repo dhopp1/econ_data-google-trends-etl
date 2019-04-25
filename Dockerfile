@@ -15,6 +15,3 @@ RUN apt-get update && apt-get install -y \
 	pip3 install psycopg2 && \
 	pip3 install sqlalchemy && \
 	git clone https://github.com/dhopp1/econ_data-google-trends-etl.git
-
-#keep running
-CMD tail -f /dev/null
